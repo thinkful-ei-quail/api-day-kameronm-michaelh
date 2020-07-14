@@ -52,7 +52,6 @@ const handleNewItemSubmit = function () {
     $('.js-shopping-list-entry').val('');
 
     api.createItem(newItemName)
-      .then(res => res.json())
       .then((newItem) => {
         store.addItem(newItem);
         render();
