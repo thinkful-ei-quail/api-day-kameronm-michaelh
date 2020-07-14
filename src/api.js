@@ -1,5 +1,5 @@
 export default[
- getItems()
+ getItems
 ]
 
 
