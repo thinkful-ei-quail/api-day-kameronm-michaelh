@@ -30,5 +30,11 @@ function updateItem(id, updateData){
   });
 }
 
+const deleteITem = function (id){
+ return fetch(`${BASE_URL}/items/${id}`, {
+  method: 'DELETE'
+ });
+}
+
 
 //return Promise.resolve('A successful response!')

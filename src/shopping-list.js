@@ -50,7 +50,7 @@ const handleNewItemSubmit = function () {
     event.preventDefault();
     const newItemName = $('.js-shopping-list-entry').val();
     $('.js-shopping-list-entry').val('');
-    
+
     api.createItem(newItemName)
       .then(res => res.json())
       .then((newItem) => {
@@ -79,27 +79,37 @@ const handleDeleteItemClicked = function () {
   });
 };
 
+
 const handleEditShoppingItemSubmit = function () {
   $('.js-shopping-list').on('submit', '.js-edit-item', event => {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-
-    render();
+    api.updateItem(id, { name: itemName })
+      .then(() => {
+        store.findAndUpdate(id, { name: itemName });
+        render();
+      });
   });
 };
 
 const handleItemCheckClicked = function () {
   $('.js-shopping-list').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
+    const item = store.findById(id);
 
-    render();
+    api.updateItem(id, { checked: !item.checked })
+      .then(() => {
+        store.findAndUpdate(id, { checked: !item.checked });
+        render();
+      });
   });
 };
 
 const handleToggleFilterClick = function () {
   $('.js-filter-checked').click(() => {
     store.toggleCheckedFilter();
+
     render();
   });
 };
