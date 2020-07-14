@@ -16,8 +16,10 @@ const main = function () {
   api.getItems()
   .then(res => res.json())
   .then(res => console.log(res));
+    .then(res => res.json())
+    .then(res => console.log(res));
 
-console.log(api.BASE_URL);
+  console.log(api.BASE_URL);
   shoppingList.bindEventListeners();
   shoppingList.render();
 };
