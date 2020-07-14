@@ -10,5 +10,7 @@ function getItems(){
   return fetch(`${BASE_URL}/items`);
 }
 
+function createItem(name){ let newItem = JSON.stringify({name: name}); return fetch(`${BASE_URL}/items`, { method: 'post', headers: {'Content-Type': 'application/json'}, body: newItem} ) }
+
 
 //return Promise.resolve('A successful response!')
